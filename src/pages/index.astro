@@ -1,6 +1,9 @@
 ---
 import Full from '../layouts/Full.astro';
 import octicons from '@primer/octicons';
+// Rendered by the CLI itself and converted to spans, not drawn by hand. See
+// README: a chart nobody could draw convincingly is the one worth not faking.
+import monitor from '../monitor.inc.html?raw';
 
 const repo = 'https://github.com/nicodes/komizo-cli';
 const docs = 'https://github.com/nicodes/komizo-be';
@@ -103,6 +106,34 @@ const icon = (name: keyof typeof octicons, size = 16) =>
 				</article>
 			</section>
 
+			<section class="monitor-section" aria-label="the monitor">
+				<div class="section-head">
+					<p class="eyebrow"><span></span> Press m</p>
+					<h2>Then find out what it did.</h2>
+					<p>
+						Requests and failures come off the shared proxy's access log, attributed to the app
+						by hostname — nothing is asked of the app. Processor, memory and disk come off
+						<code>/proc</code> and the cgroups, written down once a minute so there is a
+						yesterday to look at.
+					</p>
+					<p class="aside">
+						The line laid over each chart is how unusual that minute was, against a trailing
+						median of the half hour before it. Green within one deviation, amber to two, red
+						past it — and nothing at all where there is no baseline yet, because "we cannot say"
+						and "exactly normal" must not share a shape.
+					</p>
+				</div>
+
+				<div class="product-frame wide">
+					<div class="frame-bar">
+						<div class="frame-brand"><span class="menu-lines"></span> komizo / box.example.com / blog / api / monitor</div>
+						<div class="frame-actions"><span class="icon" set:html={icon('graph', 13)} /><span class="icon" set:html={icon('clock', 13)} /></div>
+					</div>
+					<div class="tui monitor"><pre set:html={monitor} /></div>
+					<div class="frame-keys"><span>t</span> range<i></i><span>r</span> refresh<i></i><span>esc</span> back<i></i><span>q</span> quit</div>
+				</div>
+			</section>
+
 			<section class="closing">
 				<p>Merge.<br />It's live.</p>
 				<div><span>GITHUB ACTIONS</span><i></i><span>YOUR REGISTRY</span><i></i><span>YOUR SERVER</span></div>
@@ -175,6 +206,16 @@ const icon = (name: keyof typeof octicons, size = 16) =>
 	.principles h2 { margin: 0; color: var(--ink); font-size: 22px; font-weight: 580; letter-spacing: -.035em; }
 	.principles p { max-width: 560px; margin: 0; color: var(--quiet); font-size: 14px; line-height: 1.65; }
 	.principles code { border-radius: 3px; background: #e4e8e8; padding: 1px 5px; font: 12px var(--mono); }
+
+	.monitor-section { width: min(1180px, calc(100% - 40px)); margin: 0 auto 110px; }
+	.section-head { max-width: 620px; margin-bottom: 40px; }
+	.section-head h2 { margin: 0 0 22px; color: var(--ink); font-size: clamp(32px, 4vw, 46px); font-weight: 560; line-height: 1.02; letter-spacing: -.05em; }
+	.section-head p { margin: 0 0 14px; color: var(--quiet); font-size: 15px; line-height: 1.7; }
+	.section-head .aside { max-width: 580px; color: #7b8486; font-size: 13.5px; }
+	.section-head code { border-radius: 3px; background: #e4e8e8; padding: 1px 5px; font: 12px var(--mono); }
+	.product-frame.wide { min-width: 0; width: 100%; transform: none; }
+	.tui.monitor { padding: 20px 22px; }
+	.tui.monitor pre { font-size: 10px; line-height: 1.6; }
 
 	.closing { width: min(1180px, calc(100% - 40px)); margin: 0 auto; border-radius: 8px; background: var(--ink); color: white; padding: 65px; }
 	.closing > p { max-width: 680px; margin: 0 0 50px; font-size: clamp(42px, 6vw, 72px); font-weight: 530; line-height: .98; letter-spacing: -.055em; }

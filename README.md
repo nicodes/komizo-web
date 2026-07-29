@@ -22,11 +22,17 @@ is one page with no interactivity, and the scaffold's Qwik and Tailwind were a
 runtime and a build step to produce markup that is written out directly.
 Removing them is why the built page ships **no JavaScript at all**.
 
-## The interface on the page is text
+## The interfaces on the page are text
 
-The terminal mockup in the hero is markup, not a screenshot. It stays
-selectable, it scales with the reader's font size, and it never renders blurry
-on a display it was not captured for.
+Both terminal frames are markup, not screenshots. They stay selectable, scale
+with the reader's font size, and never render blurry on a display they were not
+captured for.
+
+`src/monitor.inc.html` is **real output**: the CLI rendered a monitor page with
+its colour profile forced on, and the ANSI was converted to spans. Braille
+charts are not something anyone fakes convincingly by hand, and a picture of one
+would have been the only part of this page able to quietly stop being true. To
+refresh it, render the page again and re-run the conversion.
 
 The palette is the CLI's own — komizo picks colours per terminal background, and
 `#0B7285` is its accent on a light one. The site wears what the product wears
