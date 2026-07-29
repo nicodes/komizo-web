@@ -159,7 +159,7 @@ const icon = (name: keyof typeof octicons, size = 16) =>
 	.brand-mark { width: 27px; height: 27px; }
 	.brand-mark path:first-child { fill: var(--ink); stroke: none; }
 	.brand-mark path:last-child { fill: none; stroke: var(--cyan); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-	.header-cta { color: var(--ink); border-bottom: 1px solid #c3c8c8; padding: 6px 0; font-size: 13px; font-weight: 650; text-decoration: none; }
+	.header-cta { display: inline-flex; align-items: center; color: var(--ink); border-bottom: 1px solid #c3c8c8; padding: 6px 0; font-size: 13px; font-weight: 650; text-decoration: none; white-space: nowrap; }
 	.header-cta span { margin-left: 5px; color: var(--cyan-dark); }
 	:global(.icon svg) { display: block; fill: currentColor; }
 
