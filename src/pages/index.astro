@@ -153,7 +153,7 @@ const icon = (name: keyof typeof octicons, size = 16) =>
 </Full>
 
 <style>
-	.page-shell { min-height: 100svh; overflow: hidden; }
+	.page-shell { min-height: 100svh; overflow-x: hidden; }
 	.site-header { width: min(1180px, calc(100% - 40px)); height: 76px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
 	.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); font-size: 19px; font-weight: 760; letter-spacing: -.03em; text-decoration: none; }
 	.brand-mark { width: 27px; height: 27px; }
@@ -213,9 +213,12 @@ const icon = (name: keyof typeof octicons, size = 16) =>
 	.section-head p { margin: 0 0 14px; color: var(--quiet); font-size: 15px; line-height: 1.7; }
 	.section-head .aside { max-width: 580px; color: #7b8486; font-size: 13.5px; }
 	.section-head code { border-radius: 3px; background: #e4e8e8; padding: 1px 5px; font: 12px var(--mono); }
-	.product-frame.wide { min-width: 0; width: 100%; transform: none; }
+	.product-frame.wide { min-width: 0; width: 100%; max-width: 100%; transform: none; }
 	.tui.monitor { padding: 20px 22px; }
-	.tui.monitor pre { font-size: 10px; line-height: 1.6; }
+	/* The chart is 108 columns and does not reflow -- it is a rendering of a
+	   terminal, and rewrapping it would be a rendering of nothing. So it scrolls
+	   INSIDE its own frame at any width, and the page never grows to fit it. */
+	.tui.monitor pre { width: max-content; font-size: 10px; line-height: 1.6; }
 
 	.closing { width: min(1180px, calc(100% - 40px)); margin: 0 auto; border-radius: 8px; background: var(--ink); color: white; padding: 65px; }
 	.closing > p { max-width: 680px; margin: 0 0 50px; font-size: clamp(42px, 6vw, 72px); font-weight: 530; line-height: .98; letter-spacing: -.055em; }
@@ -254,6 +257,9 @@ const icon = (name: keyof typeof octicons, size = 16) =>
 		.product-frame { border-radius: 6px; }
 		.tui { padding: 14px; }
 		.tui pre { font-size: 9px; line-height: 1.7; }
+		.tui.monitor { padding: 12px 14px; }
+		.tui.monitor pre { font-size: 7.5px; line-height: 1.55; }
+		.section-head { margin-bottom: 28px; }
 		.principles article { grid-template-columns: 42px 1fr; padding: 26px 0; }
 		.principles h2 { font-size: 19px; }
 		.principles p { font-size: 13px; }
