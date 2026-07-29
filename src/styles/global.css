@@ -1,1 +1,26 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/* The accent is the CLI's own. komizo's interface picks colours per terminal
+   background, and its accent is #0B7285 on a light one -- so the site and the
+   thing it is about are the same colour, rather than the site inventing a
+   brand the product does not wear. */
+:root {
+	--ink: #12181a;
+	--quiet: #5b6567;
+	--cyan: #3bc9db;
+	--cyan-dark: #0b7285;
+	--paper: #f2f4f4;
+	--sans: 'Manrope', system-ui, sans-serif;
+	--mono: 'DM Mono', ui-monospace, monospace;
+	font-family: var(--sans);
+	background: var(--paper);
+	color: var(--ink);
+	font-synthesis: none;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--paper); }
+body { min-width: 320px; min-height: 100svh; margin: 0; background: var(--paper); text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+button, input, textarea, select { font: inherit; }
+::selection { background: var(--cyan); color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }
