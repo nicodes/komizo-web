@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap');
+/* Fonts are the platform's own, not fetched. The page once @import-ed Manrope
+   (a UI sans) and DM Mono (a code face) from Google Fonts -- the one third-party
+   request on an otherwise self-contained site, sending every visitor's IP to
+   Google and blocking a strict CSP. The stacks below reach for the native UI
+   sans and native monospace of each platform, so the site loads what the reader
+   already has and asks nothing of anyone else. */
 
 /* The accent is the CLI's own. komizo's interface picks colours per terminal
    background, and its accent is #0B7285 on a light one -- so the site and the
@@ -10,8 +15,8 @@
 	--cyan: #3bc9db;
 	--cyan-dark: #0b7285;
 	--paper: #f2f4f4;
-	--sans: 'Manrope', system-ui, sans-serif;
-	--mono: 'DM Mono', ui-monospace, monospace;
+	--sans: system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+	--mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'JetBrains Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 	font-family: var(--sans);
 	background: var(--paper);
 	color: var(--ink);
