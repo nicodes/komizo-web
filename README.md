@@ -40,6 +40,6 @@ rather than inventing a brand alongside it.
 
 ## Related
 
-- [komizo-cli](https://github.com/nicodes/komizo-cli) — the CLI
+- [komizo](https://github.com/nicodes/komizo) — the CLI
 - [komizo-actions](https://github.com/nicodes/komizo-actions) — the GitHub Actions
-- [komizo](https://github.com/nicodes/komizo-be) — the docs
+- [komizo-be](https://github.com/nicodes/komizo-be) — the docs
