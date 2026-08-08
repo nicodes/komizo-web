@@ -14,7 +14,7 @@ const icon = (name: keyof typeof octicons, size = 16) =>
 
 <Full
 	title="komizo — Devops for your health"
-	description="Devops for your health. CI never writes to your box: one tag crosses SSH and root does the rest. One Caddy for HTTPS, and a terminal interface that shows what every app is serving and spending."
+	description="Devops for your health. CI never writes to your box: one tag crosses SSH and root does the rest. One Caddy for HTTPS, and an app that shows what every app is serving and spending."
 >
 	<div class="page-shell">
 		<header class="site-header">
@@ -35,8 +35,8 @@ const icon = (name: keyof typeof octicons, size = 16) =>
 					<h1>Devops for your <em>health.</em></h1>
 					<p class="lede">
 						CI builds an image and sends one string over SSH. Root on your box pulls it, writes
-						the compose file and brings the stack up. No agent, no dashboard, and nobody else
-						holding your production.
+						the compose file and brings the stack up. komizo holds no SSH key for any machine
+						you own, and is never in the deploy path.
 					</p>
 					<div class="hero-actions">
 						<code class="install">go install github.com/nicodes/komizo@latest</code>
