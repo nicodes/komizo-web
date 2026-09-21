@@ -1,8 +1,10 @@
 ---
-import Full from '../layouts/Full.astro';
 import octicons from '@primer/octicons';
+// biome-ignore lint/correctness/noUnusedImports: the page's layout in the template, which biome cannot see into
+import Full from '../layouts/Full.astro';
 // Rendered by the CLI itself and converted to spans, not drawn by hand. See
 // README: a chart nobody could draw convincingly is the one worth not faking.
+// biome-ignore lint/correctness/noUnusedImports: rendered into the monitor frame with set:html in the template, which biome cannot see into
 import monitor from '../monitor.inc.html?raw';
 
 const repo = 'https://github.com/nicodes/komizo';
@@ -11,8 +13,7 @@ const repo = 'https://github.com/nicodes/komizo';
 // product.
 const docs = 'https://github.com/nicodes/komizo#readme';
 const actions = 'https://github.com/nicodes/komizo-actions';
-const icon = (name: keyof typeof octicons, size = 16) =>
-	octicons[name].toSVG({ width: size, height: size });
+const icon = (name: keyof typeof octicons, size = 16) => octicons[name].toSVG({ width: size, height: size });
 ---
 
 <Full
