@@ -42,4 +42,5 @@ rather than inventing a brand alongside it.
 
 - [komizo](https://github.com/nicodes/komizo) — the CLI
 - [komizo-actions](https://github.com/nicodes/komizo-actions) — the GitHub Actions
-- [komizo-be](https://github.com/nicodes/komizo-be) — the docs
+- [komizo-be](https://github.com/nicodes/komizo-be) — archived: the hosted service is
+  decommissioned, and the CLI is the whole product. Its README is the documentation now.
