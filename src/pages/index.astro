@@ -6,7 +6,10 @@ import octicons from '@primer/octicons';
 import monitor from '../monitor.inc.html?raw';
 
 const repo = 'https://github.com/nicodes/komizo';
-const docs = 'https://github.com/nicodes/komizo-be';
+// The CLI's README is the documentation now: komizo-be held the hosted
+// service's docs, and the service is decommissioned -- the CLI is the whole
+// product.
+const docs = 'https://github.com/nicodes/komizo#readme';
 const actions = 'https://github.com/nicodes/komizo-actions';
 const icon = (name: keyof typeof octicons, size = 16) =>
 	octicons[name].toSVG({ width: size, height: size });
@@ -14,7 +17,7 @@ const icon = (name: keyof typeof octicons, size = 16) =>
 
 <Full
 	title="komizo — Devops for your health"
-	description="Devops for your health. CI never writes to your box: one tag crosses SSH and root does the rest. One Caddy for HTTPS, and an app that shows what every app is serving and spending."
+	description="Devops for your health. CI never writes to your box: one tag crosses SSH and root does the rest. One Caddy for HTTPS. The CLI is the whole product -- and komizo ui serves an optional local web app from the box itself, over loopback or your tailnet."
 >
 	<div class="page-shell">
 		<header class="site-header">
@@ -38,6 +41,12 @@ const icon = (name: keyof typeof octicons, size = 16) =>
 						the compose file and brings the stack up. komizo holds no SSH key for any machine
 						you own, and is never in the deploy path.
 					</p>
+						<p class="lede">
+							The CLI is the whole product: install it, and manage your server from the
+							terminal. For a screen, <code>komizo ui</code> serves one from the box itself —
+							loopback by default, or bind your tailnet address and open it from your phone
+							over Tailscale. No sign-in; Tailscale is the identity layer.
+						</p>
 					<div class="hero-actions">
 						<code class="install">go install github.com/nicodes/komizo@latest</code>
 						<p>MIT · Alpine hosts · one static binary</p>
