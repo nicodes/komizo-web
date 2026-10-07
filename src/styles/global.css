@@ -1,89 +1,48 @@
-/* Fonts are the platform's own, not fetched. The page once @import-ed Manrope
-   (a UI sans) and DM Mono (a code face) from Google Fonts -- the one third-party
-   request on an otherwise self-contained site, sending every visitor's IP to
-   Google and blocking a strict CSP. The stacks below reach for the native UI
-   sans and native monospace of each platform, so the site loads what the reader
-   already has and asks nothing of anyone else. */
-
-/* The accent is the CLI's own. komizo's interface picks colours per terminal
-   background, and its accent is #0B7285 on a light one -- so the site and the
-   thing it is about are the same colour, rather than the site inventing a
-   brand the product does not wear. */
 :root {
-	--ink: #12181a;
-	--quiet: #5b6567;
-	--cyan: #3bc9db;
-	--cyan-dark: #0b7285;
-	--paper: #f2f4f4;
-	--sans: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
-	--mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+	--paper: #101e25;
+	--ink: #e2efef;
+	--line: #30434c;
+	--mono: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+	--sans: system-ui, -apple-system, "Segoe UI", sans-serif;
 	font-family: var(--sans);
-	background: var(--paper);
-	color: var(--ink);
+	background: #101e25;
+	color: #e2efef;
 	font-synthesis: none;
+	color-scheme: dark;
 }
-
 * {
 	box-sizing: border-box;
 }
 html {
 	scroll-behavior: smooth;
-	background: var(--paper);
 }
 body {
-	min-width: 320px;
-	min-height: 100svh;
 	margin: 0;
-	background: var(--paper);
-	text-rendering: optimizeLegibility;
+	min-width: 320px;
 	-webkit-font-smoothing: antialiased;
 }
-button,
-input,
-textarea,
-select {
-	font: inherit;
-}
 ::selection {
-	background: var(--cyan);
-	color: var(--ink);
+	background: #e2efef;
+	color: #101e25;
+}
+.skip-link {
+	position: absolute;
+	left: 16px;
+	top: -80px;
+	z-index: 100;
+	padding: 12px 18px;
+	background: #e2efef;
+	color: #101e25;
+}
+.skip-link:focus {
+	top: 12px;
 }
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,
 	*::after {
-		/* biome-ignore lint/complexity/noImportantStyles: a reduced-motion override has to beat every other declaration, which is what !important is for */
 		scroll-behavior: auto !important;
-		/* biome-ignore lint/complexity/noImportantStyles: see above -- reduced motion is the one media query that must not lose */
-		animation-duration: 0.01ms !important;
-		/* biome-ignore lint/complexity/noImportantStyles: see above -- reduced motion is the one media query that must not lose */
-		transition-duration: 0.01ms !important;
+		animation: none !important;
+		transition: none !important;
 	}
-}
-
-a:focus-visible,
-summary:focus-visible {
-	outline: 3px solid currentColor;
-	outline-offset: 5px;
-}
-
-.skip-link {
-	position: fixed;
-	top: 12px;
-	left: 12px;
-	z-index: 100;
-	padding: 12px 18px;
-	background: #fff;
-	color: #111;
-	transform: translateY(-160%);
-}
-.skip-link:focus {
-	transform: translateY(0);
-}
-
-:root {
-	--paper: #142328;
-	--ink: #e1ecee;
-	--quiet: #b5c6c9;
-	color-scheme: dark;
 }

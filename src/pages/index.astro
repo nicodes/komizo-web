@@ -1,28 +1,671 @@
 ---
 import Full from '../layouts/Full.astro';
 ---
-<Full title="komizo — Operate your own Compose hosts" description="Prepare hosts, deploy app-scoped Compose stacks, and inspect your applications over SSH. A CLI and local UI for servers you own, with no hosted account."><div class="shell"><header><a class="brand" href="/">komizo<span>_</span></a><nav aria-label="Main"><a href="#workflow">Workflow</a><a href="https://github.com/nicodes/komizo#readme">Docs ↗</a><a href="https://github.com/nicodes/komizo/releases">Releases ↗</a></nav></header><main id="main-content"><section class="hero"><div class="hero-copy"><div class="label">HOST OPERATIONS / YOUR INFRASTRUCTURE</div><h1>Your box.<br>Your stack.<br><em>Your call.</em></h1><div class="hero-bottom"><p>Prepare and operate your own Compose hosts over SSH. Deploy one application at a time, inspect what’s running, and keep the work on servers you own.</p><div><a class="button" href="https://github.com/nicodes/komizo#readme">Start with the CLI ↗</a><p class="note">No hosted account required.</p></div></div></div>
-<section class="console" aria-label="Komizo command reference"><div class="console-bar"><span>COMMAND REFERENCE</span><span>SSH → YOUR HOST</span></div><div class="console-body"><div><span class="prompt">01</span><code>komizo init</code><p>Prepare a host. Requires privileged access.</p></div><div><span class="prompt">02</span><code>komizo list</code><p>Inspect the applications on your host.</p></div><div><span class="prompt">03</span><code>komizo report</code><p>Read the state of your stack.</p></div><div><span class="prompt">04</span><code>komizo logs</code><p>See what your applications are saying.</p></div></div><p class="console-foot">Use <code>--help</code> for each command’s current flags.</p></section>
-</section>
-<section class="workflow" id="workflow"><div class="section-title"><p class="label">OPERATE THE WHOLE PATH</p><h2>From host prep<br>to the next deploy.</h2></div><div class="workflow-list"><article><b>01 / PREPARE</b><h3>Give the host a foundation.</h3><p>Start with <code>init</code> on a host you administer. Review the documented changes before provisioning an existing server.</p></article><article><b>02 / DEPLOY</b><h3>A Compose stack per app.</h3><p>The supported deployment model is app-scoped Compose. Use the companion GitHub Actions to connect releases to your hosts.</p><a href="https://github.com/nicodes/komizo-actions">Explore the deployment actions ↗</a></article><article><b>03 / OPERATE</b><h3>Keep a view of the running system.</h3><p>Use the terminal for applications, reports and logs. Prefer a browser? The <code>ui</code> command serves the local interface.</p></article></div></section>
-<section class="install"><div><p class="label">PICK YOUR ENTRY POINT</p><h2>Small tool.<br>Real infrastructure.</h2><p>Choose a verified release archive or install with a Go toolchain matching the project’s requirements.</p></div><div class="install-options"><a href="https://github.com/nicodes/komizo/releases"><span>01</span><div><b>Prebuilt releases</b><p>Linux and macOS · x86_64 and arm64</p></div><i>↗</i></a><a href="https://github.com/nicodes/komizo#readme"><span>02</span><div><b>Install and command guide</b><p>Host preparation, current commands and release verification</p></div><i>↗</i></a><a href="https://github.com/nicodes/komizo-actions"><span>03</span><div><b>GitHub Actions</b><p>App-scoped Compose deployments from CI</p></div><i>↗</i></a></div></section></main><footer><span>komizo / CLI + LOCAL UI</span><a href="https://github.com/nicodes/komizo">Source on GitHub ↗</a></footer></div></Full>
+
+<Full>
+	<div class="folio">
+		<header class="topbar">
+			<a class="wordmark" href="/">
+				komizo
+			</a>
+			<nav aria-label="Main">
+				<a href="#workflow">Workflow</a>
+				<a href="https://github.com/nicodes/komizo#readme">Docs ↗</a>
+			</nav>
+		</header>
+		<main id="main-content">
+			<section class="host-cover">
+				<div class="host-title">
+					<p class="tag">OPERATE YOUR OWN COMPOSE HOSTS</p>
+					<h1>
+						A clear view.
+						<br />
+						<em>A steady hand.</em>
+					</h1>
+					<p>
+						Prepare hosts, deploy app-scoped Compose stacks, and inspect what’s running. Over SSH. On servers you own.
+					</p>
+					<div class="host-actions">
+						<a class="cta" href="https://github.com/nicodes/komizo#readme">
+							Start with Komizo ↗
+						</a>
+						<span>CLI + LOCAL UI / NO HOSTED ACCOUNT</span>
+					</div>
+				</div>
+				<div class="topology">
+					<div class="topology-title">
+						<span>HOST OPERATIONS / ILLUSTRATIVE TOPOLOGY</span>
+						<span>↗</span>
+					</div>
+					<div class="operator">
+						<span class="node-icon">⌘</span>
+						<div>
+							<strong>Your workstation</strong>
+							<small>komizo CLI · local UI · deployment actions</small>
+						</div>
+					</div>
+					<div class="ssh-link">
+						<i></i>
+						<span>SSH</span>
+						<i></i>
+					</div>
+					<div class="host-box">
+						<div class="host-box-title">
+							<span class="node-icon">▤</span>
+							<div>
+								<strong>Your Compose host</strong>
+								<small>App-scoped deployments</small>
+							</div>
+						</div>
+						<div class="app-nodes">
+							<div>
+								<span>01</span>
+								<b>web</b>
+								<small>COMPOSE APP</small>
+							</div>
+							<div>
+								<span>02</span>
+								<b>api</b>
+								<small>COMPOSE APP</small>
+							</div>
+							<div>
+								<span>03</span>
+								<b>worker</b>
+								<small>COMPOSE APP</small>
+							</div>
+						</div>
+						<div class="host-signals">
+							<span>APPLICATIONS</span>
+							<span>REPORTS</span>
+							<span>LOGS</span>
+						</div>
+					</div>
+					<div class="topology-caption">Keep the deployment and the day-to-day operations in one tool.</div>
+				</div>
+			</section>
+			<section class="operations" id="workflow">
+				<div>
+					<p class="tag">THE WORK, END TO END</p>
+					<h2 class="section-heading">
+						Give every app
+						<br />a place to run.
+					</h2>
+					<p>From the first host setup to the next release, keep the work close to your infrastructure.</p>
+				</div>
+				<div class="operation-list">
+					<article>
+						<span>01</span>
+						<div>
+							<h3>Prepare the host</h3>
+							<p>
+								<code>komizo init</code> sets up a host you administer. Review the documented provisioning changes
+								before using it on an existing server.
+							</p>
+						</div>
+					</article>
+					<article>
+						<span>02</span>
+						<div>
+							<h3>Deploy one application</h3>
+							<p>
+								App-scoped Compose is the supported model. Connect releases to your hosts with the companion GitHub
+								Actions.
+							</p>
+							<a href="https://github.com/nicodes/komizo-actions">Deployment actions ↗</a>
+						</div>
+					</article>
+					<article>
+						<span>03</span>
+						<div>
+							<h3>Keep the system in view</h3>
+							<p>
+								Inspect applications with <code>list</code>, read <code>report</code>, and follow <code>logs</code>. Use{' '}
+								<code>ui</code> for the local browser interface.
+							</p>
+						</div>
+					</article>
+				</div>
+			</section>
+			<section class="command-rail" aria-label="Command reference">
+				<span>YOUR DAILY TOOLS</span>
+				<code>komizo list</code>
+				<code>komizo report</code>
+				<code>komizo logs</code>
+				<code>komizo ui</code>
+				<p>
+					Use <code>--help</code> for current flags.
+				</p>
+			</section>
+			<section class="host-start">
+				<div>
+					<p class="tag">PUT IT TO WORK</p>
+					<h2 class="section-heading">
+						Your box.
+						<br />
+						Your stack. Your call.
+					</h2>
+				</div>
+				<div>
+					<a href="https://github.com/nicodes/komizo/releases">
+						<b>Get a release</b>
+						<span>Linux & macOS · x86_64 & arm64 ↗</span>
+					</a>
+					<a href="https://github.com/nicodes/komizo#readme">
+						<b>Read the operating guide</b>
+						<span>Installation, host prep and current commands ↗</span>
+					</a>
+					<a href="https://github.com/nicodes/komizo-actions">
+						<b>Connect your releases</b>
+						<span>GitHub Actions for app deployments ↗</span>
+					</a>
+				</div>
+			</section>
+		</main>
+		<footer class="bottom">
+			<span>komizo / your infrastructure</span>
+			<nav aria-label="Footer">
+				<a href="https://github.com/nicodes/komizo">Source</a>
+				<a href="https://github.com/nicodes/komizo/releases">Releases</a>
+			</nav>
+		</footer>
+	</div>
+</Full>
 <style>
-
-.shell { width: min(1200px,calc(100% - 64px)); margin: auto; } a { color: inherit; text-underline-offset: 5px; } header { min-height: 88px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #33484c; } .brand { font: 700 24px var(--mono); text-decoration: none; } .brand span { color: #3bc9db; } nav { display: flex; gap: 28px; font: 11px var(--mono); } nav a { text-decoration: none; } .hero { padding: 70px 0 55px; } .label { color: #79d4dd; font: 11px var(--mono); letter-spacing: .12em; } h1 { font-size: clamp(60px,8vw,112px); line-height: .99; letter-spacing: -.07em; margin: 32px 0; font-weight: 700; } h1 em { font-family: var(--mono); font-style: normal; color: #79d4dd; } .hero-bottom { display: flex; align-items: end; justify-content: space-between; gap: 48px; } .hero-bottom > p { max-width: 600px; color: #b5c6c9; font-size: 18px; line-height: 1.7; } .button { display: inline-flex; padding: 18px 24px; background: #79d4dd; color: #10272c; text-decoration: none; font: 700 12px var(--mono); } .note { font: 11px var(--mono); color: #b5c6c9; }
-.console { border: 1px solid #426169; background: #0b1417; } .console-bar { padding: 18px 24px; display: flex; justify-content: space-between; border-bottom: 1px solid #33484c; font: 10px var(--mono); color: #9aafb4; } .console-body { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); } .console-body > div { padding: 32px 24px; border-right: 1px solid #33484c; } .console-body > div:last-child { border: 0; } .prompt { display: block; margin-bottom: 22px; font: 11px var(--mono); color: #79d4dd; } code { font-family: var(--mono); } .console code { font-size: 16px; color: #e1ecee; } .console p { color: #9aafb4; font-size: 12px; line-height: 1.6; } .console-foot { border-top: 1px solid #33484c; padding: 16px 24px; margin: 0; } .console-foot code { font-size: 12px; }
-.workflow { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; padding: 100px 0; } h2 { font-size: clamp(38px,4.5vw,62px); line-height: 1.05; letter-spacing: -.05em; font-weight: 600; } .workflow-list article { border-top: 1px solid #426169; padding: 28px 0; } .workflow-list b { font: 10px var(--mono); color: #79d4dd; } h3 { font-size: 24px; font-weight: 550; letter-spacing: -.035em; } .workflow-list p,.install p { color: #b5c6c9; font-size: 15px; line-height: 1.7; } .workflow-list a { font: 11px var(--mono); color: #79d4dd; }
-.install { border-top: 1px solid #426169; padding: 60px 0 90px; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; } .install-options a { display: flex; align-items: center; gap: 20px; padding: 26px 0; border-bottom: 1px solid #426169; text-decoration: none; } .install-options a > span { font: 10px var(--mono); color: #79d4dd; } .install-options b { font-size: 20px; font-weight: 550; } .install-options p { font-size: 12px; margin-bottom: 0; } .install-options i { margin-left: auto; color: #79d4dd; font-style: normal; } footer { border-top: 1px solid #426169; min-height: 100px; display: flex; align-items: center; justify-content: space-between; gap: 24px; font: 10px var(--mono); color: #b5c6c9; }
-@media (max-width: 900px) { .workflow,.install { grid-template-columns: 1fr; gap: 30px; } .hero-bottom { align-items: start; flex-direction: column; gap: 15px; } .console-body { grid-template-columns: 1fr 1fr; } .console-body > div { border-bottom: 1px solid #33484c; } }
-@media (max-width: 600px) { .shell { width: calc(100% - 32px); } header { flex-wrap: wrap; gap: 18px; padding: 22px 0; } nav { gap: 18px; } .hero { padding-top: 42px; } h1 { font-size: 64px; } .hero-bottom > p { font-size: 16px; } .console-body { grid-template-columns: 1fr; } .console-body > div { border-right: 0; padding: 22px; } .console-bar { gap: 12px; font-size: 8px; padding: 16px; } .workflow { padding: 55px 0; } footer { flex-wrap: wrap; padding: 24px 0; } }
-
-
-.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
-h1 { font-size: clamp(62px,6.5vw,92px); }
-.hero-bottom { display: block; }
-.hero-bottom > p { font-size: 16px; margin-bottom: 28px; }
-.console-body { grid-template-columns: 1fr; }
-.console-body > div { border-right: 0; border-bottom: 1px solid #33484c; display: grid; grid-template-columns: 30px 1fr; gap: 8px 14px; padding: 24px; }
-.prompt { grid-row: span 2; margin: 0; padding-top: 3px; }
-.console-body p { margin: 0; }
-@media (max-width: 900px) { .hero { grid-template-columns: 1fr; gap: 30px; } }
+	* {
+		box-sizing: border-box;
+	}
+	a {
+		color: inherit;
+		text-underline-offset: 5px;
+	}
+	img {
+		max-width: 100%;
+	}
+	svg {
+		max-width: 100%;
+	}
+	h1,
+	h2,
+	h3,
+	p {
+		overflow-wrap: break-word;
+	}
+	h1,
+	h2,
+	h3 {
+		text-wrap: balance;
+	}
+	p {
+		line-height: 1.7;
+	}
+	code,
+	pre {
+		font-family: var(--mono);
+	}
+	pre {
+		white-space: pre-wrap;
+		overflow-wrap: anywhere;
+	}
+	.folio {
+		width: min(1200px, calc(100% - 64px));
+		margin: auto;
+	}
+	.topbar {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 24px;
+		min-height: 100px;
+	}
+	.wordmark {
+		font-size: 23px;
+		font-weight: 750;
+		letter-spacing: -0.04em;
+		text-decoration: none;
+	}
+	.topbar nav {
+		display: flex;
+		gap: 25px;
+		align-items: center;
+		font-size: 12px;
+	}
+	.topbar nav a {
+		text-decoration: none;
+	}
+	.tag {
+		font: 11px var(--mono);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+	.cta {
+		display: inline-flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 30px;
+		padding: 18px 25px;
+		font-size: 14px;
+		font-weight: 650;
+		text-decoration: none;
+		border-radius: 4px;
+	}
+	.bottom {
+		padding: 35px 0;
+		display: flex;
+		justify-content: space-between;
+		gap: 20px;
+		align-items: center;
+		font-size: 12px;
+		border-top: 1px solid var(--line);
+	}
+	.bottom nav {
+		display: flex;
+		gap: 20px;
+	}
+	.section-heading {
+		font-size: clamp(32px, 4vw, 52px);
+		letter-spacing: -0.04em;
+		font-weight: 550;
+		line-height: 1.1;
+	}
+	.card-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 25px;
+	}
+	.card-grid h3 {
+		font-size: 22px;
+		font-weight: 600;
+		letter-spacing: -0.025em;
+	}
+	.card-grid p {
+		font-size: 14px;
+	}
+	.icon svg {
+		width: 16px;
+		height: 16px;
+		fill: currentColor;
+	}
+	details summary {
+		cursor: pointer;
+		padding: 20px 0;
+		font-size: 16px;
+	}
+	details {
+		border-top: 1px solid var(--line);
+	}
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 13px;
+	}
+	th,
+	td {
+		text-align: left;
+		padding: 15px;
+		border-bottom: 1px solid var(--line);
+		overflow-wrap: anywhere;
+	}
+	th {
+		font-weight: 600;
+	}
+	main > section {
+		margin-bottom: 100px;
+	}
+	.source-label {
+		font: 10px var(--mono);
+		letter-spacing: 0.06em;
+	}
+	a:focus-visible,
+	summary:focus-visible {
+		outline: 3px solid currentColor;
+		outline-offset: 5px;
+	}
+	@media (max-width: 900px) {
+		.card-grid {
+			grid-template-columns: 1fr;
+		}
+		main > section {
+			margin-bottom: 70px;
+		}
+	}
+	@media (max-width: 600px) {
+		.folio {
+			width: calc(100% - 36px);
+		}
+		.topbar {
+			min-height: 85px;
+			gap: 16px;
+			flex-wrap: wrap;
+			padding: 20px 0;
+		}
+		.topbar nav {
+			gap: 16px;
+			font-size: 11px;
+		}
+		.wordmark {
+			font-size: 21px;
+		}
+		.bottom {
+			flex-wrap: wrap;
+		}
+		.cta {
+			padding: 16px 20px;
+		}
+		th,
+		td {
+			padding: 12px 7px;
+			font-size: 11px;
+		}
+		main > section {
+			margin-bottom: 55px;
+		}
+	}
+	.host-cover {
+		padding-top: 40px;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 70px;
+		align-items: center;
+	}
+	.host-title h1 {
+		font-size: clamp(51px, 5.4vw, 76px);
+		line-height: 1.06;
+		letter-spacing: -0.055em;
+		font-weight: 550;
+		margin: 30px 0;
+	}
+	.host-title h1 em {
+		font-style: normal;
+		color: #7fc6c6;
+	}
+	.host-title > p:last-of-type {
+		font-size: 18px;
+		color: #9cb3ba;
+		max-width: 420px;
+	}
+	.tag {
+		color: #7fc6c6;
+	}
+	.cta {
+		background: #b5ded4;
+		color: #10262b;
+	}
+	.host-actions {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+		gap: 22px;
+		margin-top: 28px;
+	}
+	.host-actions > span {
+		font: 9px var(--mono);
+		color: #94adb4;
+	}
+	.topology {
+		border: 1px solid #415962;
+		background-color: #142730;
+		background-image: radial-gradient(#69859030 1px, transparent 1px);
+		background-size: 16px 16px;
+		border-radius: 8px;
+		padding: 28px;
+	}
+	.topology-title {
+		display: flex;
+		justify-content: space-between;
+		gap: 12px;
+		color: #8fafb7;
+		font: 9px var(--mono);
+		margin-bottom: 30px;
+	}
+	.operator,
+	.host-box-title {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+	}
+	.operator {
+		background: #1a3540;
+		border: 1px solid #42616b;
+		padding: 20px;
+		border-radius: 5px;
+	}
+	.node-icon {
+		font-size: 30px;
+		color: #95d0c9;
+	}
+	.operator strong,
+	.host-box-title strong {
+		font-size: 16px;
+		font-weight: 550;
+	}
+	.operator small,
+	.host-box-title small {
+		display: block;
+		color: #88a6b0;
+		font-size: 10px;
+		margin-top: 8px;
+		line-height: 1.5;
+	}
+	.ssh-link {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font: 9px var(--mono);
+		color: #95d0c9;
+		gap: 8px;
+	}
+	.ssh-link i {
+		height: 25px;
+		width: 1px;
+		background: #78aca9;
+	}
+	.host-box {
+		border: 1px solid #507775;
+		border-radius: 5px;
+		background: #183139;
+		padding: 22px;
+	}
+	.app-nodes {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 9px;
+		margin-top: 25px;
+	}
+	.app-nodes > div {
+		border: 1px solid #456663;
+		border-radius: 4px;
+		padding: 15px 10px;
+		background: #294647;
+	}
+	.app-nodes span {
+		display: block;
+		font: 8px var(--mono);
+		color: #8ab4b0;
+		margin-bottom: 20px;
+	}
+	.app-nodes b {
+		display: block;
+		font: 16px var(--mono);
+		font-weight: 500;
+		margin-bottom: 15px;
+	}
+	.app-nodes small {
+		font: 7px var(--mono);
+		color: #a0bfbc;
+		white-space: nowrap;
+	}
+	.host-signals {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px;
+		color: #89b0b2;
+		font: 8px var(--mono);
+		margin-top: 25px;
+		border-top: 1px solid #365d60;
+		padding-top: 18px;
+	}
+	.topology-caption {
+		font-size: 11px;
+		color: #8fafb7;
+		line-height: 1.6;
+		margin-top: 22px;
+	}
+	.operations {
+		display: grid;
+		grid-template-columns: 1fr 1.3fr;
+		gap: 90px;
+	}
+	.operations > div > p:last-child {
+		font-size: 16px;
+		color: #9cb3ba;
+		max-width: 360px;
+	}
+	.operation-list article {
+		display: flex;
+		align-items: start;
+		gap: 25px;
+		border-top: 1px solid var(--line);
+		padding: 25px 0;
+	}
+	.operation-list article > span {
+		font: 11px var(--mono);
+		color: #7fc6c6;
+		padding-top: 7px;
+	}
+	.operation-list h3 {
+		font-size: 24px;
+		letter-spacing: -0.03em;
+		font-weight: 550;
+		margin: 0 0 12px;
+	}
+	.operation-list p {
+		font-size: 14px;
+		color: #9cb3ba;
+		margin: 0;
+	}
+	.operation-list a {
+		font-size: 12px;
+		display: inline-block;
+		margin-top: 15px;
+		color: #b5ded4;
+	}
+	.operation-list code {
+		font-size: 12px;
+		color: #d3e5e5;
+	}
+	.command-rail {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 20px;
+		background: #203941;
+		padding: 30px;
+		border: 1px solid #42616b;
+		border-radius: 5px;
+	}
+	.command-rail > span {
+		font: 9px var(--mono);
+		color: #8fafb7;
+	}
+	.command-rail > code {
+		font-size: 14px;
+		padding: 12px 15px;
+		background: #101e25;
+		border: 1px solid #415962;
+	}
+	.command-rail p {
+		font-size: 10px;
+		color: #8fafb7;
+	}
+	.host-start {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 90px;
+		background: #b5ded4;
+		color: #163039;
+		padding: 45px;
+		border-radius: 7px;
+	}
+	.host-start .tag {
+		color: #406a6b;
+	}
+	.host-start a {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		padding: 22px 0;
+		border-bottom: 1px solid #91b8ad;
+		text-decoration: none;
+	}
+	.host-start b {
+		font-size: 20px;
+		font-weight: 550;
+	}
+	.host-start a span {
+		font-size: 11px;
+		color: #406a6b;
+	}
+	@media (max-width: 900px) {
+		.host-cover {
+			gap: 30px;
+		}
+		.topology {
+			padding: 20px;
+		}
+		.app-nodes b {
+			font-size: 13px;
+		}
+		.operations,
+		.host-start {
+			gap: 40px;
+		}
+		.app-nodes small {
+			font-size: 6px;
+		}
+	}
+	@media (max-width: 600px) {
+		.host-cover,
+		.operations,
+		.host-start {
+			grid-template-columns: 1fr;
+			gap: 35px;
+		}
+		.host-cover {
+			padding-top: 20px;
+		}
+		.host-title h1 {
+			font-size: 53px;
+		}
+		.host-title > p:last-of-type {
+			font-size: 16px;
+		}
+		.topology {
+			padding: 18px;
+		}
+		.topology-title {
+			font-size: 8px;
+		}
+		.host-box {
+			padding: 16px;
+		}
+		.app-nodes {
+			gap: 7px;
+		}
+		.host-start {
+			padding: 30px 24px;
+		}
+		.command-rail {
+			padding: 24px;
+			gap: 13px;
+		}
+		.command-rail > span {
+			width: 100%;
+		}
+		.command-rail > code {
+			font-size: 12px;
+		}
+		.operation-list article {
+			gap: 18px;
+		}
+	}
 </style>
