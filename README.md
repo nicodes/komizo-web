@@ -1,26 +1,16 @@
-# komizo website
+<!-- Generated from private documentation source. Do not edit directly. Source SHA256: d49ac8f0139b7a3d1661936612b79656857a56cb2e7c6a375f9d6e674606379f -->
 
-Static Astro landing page for [komizo](https://komizo.dev).
+# komizo-web
 
-Primary destination: [komizo](https://github.com/nicodes/komizo#readme).
+Static website built with Astro.
 
-The current product is a CLI and local UI for preparing and operating app-scoped Compose hosts over SSH. There is no hosted account.
-
-## Development
-
-Use the Bun version in `.mise.toml`.
+Install the [Komizo release](https://github.com/nicodes/komizo#install) matching `komizo.lock`, then run:
 
 ```sh
-bun install --frozen-lockfile
-bun run dev
-bun run build
-bun run preview
+komizo dev                 # Foreground development server
+komizo check               # Complete applicable source, build and output checks
+komizo run build           # Generate dist/
+komizo describe            # Inspect tools and available commands
 ```
 
-Run `bun run typecheck` before building.
-
-The site is static and ships no client-side JavaScript. Existing CI validates the build and product-specific output contract.
-
-## Standard developer commands
-
-Use `mise install` to install the pinned Bun toolchain. Run `mise exec -- make check` for frozen dependency installation, source lint, type checking, the static build and all output assertions. `make test` verifies an existing build. `make dev` runs the development server in the foreground; stop it with Ctrl-C. `make clean` removes generated output.
+Ctrl-C stops development. This website needs no runtime credentials or credential `.env` file.
