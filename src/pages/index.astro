@@ -1,5 +1,7 @@
 ---
 import Full from '../layouts/Full.astro';
+
+const installCommand = 'curl -fsSL https://komizo.dev/install | sh';
 ---
 
 <Full>
@@ -31,6 +33,8 @@ import Full from '../layouts/Full.astro';
 						</a>
 						<span>CLI + LOCAL UI / NO HOSTED ACCOUNT</span>
 					</div>
+					<pre class="cli-install"><code>{installCommand}</code></pre>
+					<p class="install-requirements">Linux and macOS. Requires the GitHub CLI to verify release provenance.</p>
 				</div>
 				<div class="topology">
 					<div class="topology-title">
@@ -668,4 +672,16 @@ import Full from '../layouts/Full.astro';
 			gap: 18px;
 		}
 	}
+
+	.cli-install {
+		max-width: 100%;
+		margin: 18px 0;
+		padding: 14px;
+		border: 1px solid currentColor;
+		white-space: pre-wrap;
+		overflow-wrap: anywhere;
+		font-size: 12px;
+		line-height: 1.6;
+	}
+	.install-requirements { font-size: 12px; line-height: 1.6; }
 </style>
