@@ -1,4 +1,4 @@
-<!-- Generated from private documentation source. Do not edit directly. Source SHA256: 0d330e67510bc1a50233527c9a4df625fffcf1c5b84e88dc9fa9d47612aec92d -->
+<!-- Generated from private documentation source. Do not edit directly. Source SHA256: 94431c521d9e28408edec51b585d058ffa11083547ac648f442314a8f943fc3b -->
 
 # komizo-web
 
@@ -17,8 +17,18 @@ Ctrl-C stops development. This website needs no runtime credentials or credentia
 
 ## Install the CLI
 
+With curl:
+
 ```sh
 curl -fsSL https://komizo.dev/install | sh
 ```
 
-Requires the GitHub CLI for release provenance verification. See [komizo](https://github.com/nicodes/komizo#readme) for setup and installation options.
+Or with mise:
+
+```sh
+mise use --global github:nicodes/komizo@latest
+```
+
+Each install command has a Copy button with confirmation. If clipboard access is unavailable, the command remains selectable for manual copying.
+
+The curl installer requires an authenticated GitHub CLI session for release provenance verification. See [komizo](https://github.com/nicodes/komizo#readme) for setup and installation options.
