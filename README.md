@@ -1,4 +1,4 @@
-<!-- Generated from private documentation source. Do not edit directly. Source SHA256: 94431c521d9e28408edec51b585d058ffa11083547ac648f442314a8f943fc3b -->
+<!-- Generated from private documentation source. Do not edit directly. Source SHA256: 6f3c6b3783e7973b91a480438765f2617bb75011421305461d9d64b3b47b6c92 -->
 
 # komizo-web
 
@@ -29,6 +29,6 @@ Or with mise:
 mise use --global github:nicodes/komizo@latest
 ```
 
-Each install command has a Copy button with confirmation. If clipboard access is unavailable, the command remains selectable for manual copying.
+An icon-only copy control sits on the right inside each install-command outline and shows a checkmark after copying. If clipboard access is unavailable, the command remains selectable for manual copying.
 
 The curl installer requires an authenticated GitHub CLI session for release provenance verification. See [komizo](https://github.com/nicodes/komizo#readme) for setup and installation options.
