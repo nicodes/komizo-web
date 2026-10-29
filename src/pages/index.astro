@@ -1,7 +1,9 @@
 ---
+import InstallCommand from '../components/InstallCommand.astro';
 import Full from '../layouts/Full.astro';
 
 const installCommand = 'curl -fsSL https://komizo.dev/install | sh';
+const miseCommand = 'mise use --global github:nicodes/komizo@latest';
 ---
 
 <Full>
@@ -33,8 +35,9 @@ const installCommand = 'curl -fsSL https://komizo.dev/install | sh';
 						</a>
 						<span>CLI + LOCAL UI / NO HOSTED ACCOUNT</span>
 					</div>
-					<pre class="cli-install"><code>{installCommand}</code></pre>
-					<p class="install-requirements">Linux and macOS. Requires the GitHub CLI to verify release provenance.</p>
+					<p>curl</p><InstallCommand command={installCommand} method="curl" />
+          <p>mise</p><InstallCommand command={miseCommand} method="mise" />
+					<p class="install-requirements">Linux and macOS. The curl installer requires an authenticated GitHub CLI session to verify release provenance.</p>
 				</div>
 				<div class="topology">
 					<div class="topology-title">
@@ -173,6 +176,7 @@ const installCommand = 'curl -fsSL https://komizo.dev/install | sh';
 			</nav>
 		</footer>
 	</div>
+	<script is:inline type="module" src="/install-copy.js"></script>
 </Full>
 <style>
 	* {
