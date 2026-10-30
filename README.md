@@ -1,4 +1,4 @@
-<!-- Generated from private documentation source. Do not edit directly. Source SHA256: c348426a1b2606f4887a65ff42104dd6cc32cd98648a49895071c18803c1cdba -->
+<!-- Generated from private documentation source. Do not edit directly. Source SHA256: c39e77778431bdea79baaadf210d4c23c04cfe1525f994d018bf2773fe02f6e5 -->
 
 # komizo-web
 
@@ -32,3 +32,14 @@ mise use --global github:nicodes/komizo@latest
 An icon-only copy control sits on the right inside each install-command outline and shows a checkmark after copying. If clipboard access is unavailable, the command remains selectable for manual copying.
 
 The curl installer requires an authenticated GitHub CLI session for release provenance verification. See [komizo](https://github.com/nicodes/komizo#readme) for setup and installation options.
+
+For contributor verification, prepare the pinned helper source before running native tasks:
+
+```sh
+git clone https://github.com/nicodes/tools.git .ci-tools
+git -C .ci-tools checkout --detach f7e243524ce2aa29f299e4c79db33001f72f4a30
+mise install
+mise run check
+```
+
+Build commands record source and exact regular output hashes. Declared tests produce evidence from the current verification session in `.artifacts/verification`.
