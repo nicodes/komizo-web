@@ -2,8 +2,6 @@
   "version": 1,
   "sha256": "263ce794f04c86d44a61b81183101532452db536eab822bb1382ad59cc17f612",
   "history": {
-    "forbidden_commits": [
-      "8fc4007fa38b42d55c7eca924ec306d6862b37eb"
-    ]
+    "forbidden_commits": ["8fc4007fa38b42d55c7eca924ec306d6862b37eb"]
   }
 }
