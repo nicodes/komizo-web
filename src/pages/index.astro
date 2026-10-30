@@ -105,7 +105,7 @@ const miseCommand = 'mise use --global github:nicodes/komizo@latest';
 						<div>
 							<h3>Prepare the host</h3>
 							<p>
-								<code>komizo init</code> sets up a host you administer. Review the documented provisioning changes
+								<code>komizo setup --host root@your-server --definition app.json</code> registers an application on a host you administer. Review the provisioning changes
 								before using it on an existing server.
 							</p>
 						</div>
@@ -115,8 +115,8 @@ const miseCommand = 'mise use --global github:nicodes/komizo@latest';
 						<div>
 							<h3>Deploy one application</h3>
 							<p>
-								App-scoped Compose is the supported model. Connect releases to your hosts with the companion GitHub
-								Actions.
+								Deploy a published immutable artifact over SSH with explicit operator approval. Optional GitHub Actions
+								connect CI provenance to the same protected host executor.
 							</p>
 							<a href="https://github.com/nicodes/komizo-actions">Deployment actions ↗</a>
 						</div>
