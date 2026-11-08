@@ -1,4 +1,4 @@
-<!-- Generated from private documentation source. Do not edit directly. Source SHA256: 99b0f8ddcd1ec1fe2b3bada3434a13b60fa5c53932761fa1cb7daa4f12b1958e -->
+<!-- Generated from private documentation source. Do not edit directly. Source SHA256: 4b0293509beac4af2a4d46ca3de168e6222dcef8e44e17b6df193bf94a991841 -->
 
 # komizo-web
 
@@ -37,7 +37,7 @@ For contributor verification, prepare the pinned helper source before running na
 
 ```sh
 git clone https://github.com/nicodes/tools.git .ci-tools
-git -C .ci-tools checkout --detach 39666e8d26d2bd0e1c7e5fee6f289fd0fd3a5202
+git -C .ci-tools checkout --detach 46bf98735de2e7fe41cca1042c20c98f5b01824a
 mise install
 mise run check
 ```
