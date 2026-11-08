@@ -4,4 +4,4 @@ import { defineConfig } from 'astro/config';
 // Nothing configured, and nothing to configure. One static page with no
 // islands, no client runtime and no CSS framework -- the whole site is an
 // Astro layout, a page and a stylesheet, which is the same shape as ormos.dev.
-export default defineConfig({ vite: { envDir: false },});
+export default defineConfig({ vite: { envDir: false } });
