@@ -20,14 +20,14 @@ const miseCommand = 'mise use --global github:nicodes/komizo@latest';
 		<main id="main-content">
 			<section class="host-cover">
 				<div class="host-title">
-					<p class="tag">OPERATE YOUR OWN COMPOSE HOSTS</p>
+					<p class="tag">OPERATE YOUR OWN PODMAN HOSTS</p>
 					<h1>
 						A clear view.
 						<br />
 						<em>A steady hand.</em>
 					</h1>
 					<p>
-						Prepare hosts, deploy app-scoped Compose stacks, and inspect what’s running. Over SSH. On servers you own.
+						Deploy immutable Podman releases, serve static assets, and inspect what’s running. Over SSH. On servers you own.
 					</p>
 					<div class="host-actions">
 						<a class="cta" href="https://github.com/nicodes/komizo#readme">
@@ -60,25 +60,25 @@ const miseCommand = 'mise use --global github:nicodes/komizo@latest';
 						<div class="host-box-title">
 							<span class="node-icon">▤</span>
 							<div>
-								<strong>Your Compose host</strong>
-								<small>App-scoped deployments</small>
+								<strong>Your Podman host</strong>
+								<small>Debian 13 · systemd</small>
 							</div>
 						</div>
 						<div class="app-nodes">
 							<div>
 								<span>01</span>
 								<b>web</b>
-								<small>COMPOSE APP</small>
+								<small>STATIC ASSETS</small>
 							</div>
 							<div>
 								<span>02</span>
 								<b>api</b>
-								<small>COMPOSE APP</small>
+								<small>PODMAN SERVICE</small>
 							</div>
 							<div>
 								<span>03</span>
 								<b>worker</b>
-								<small>COMPOSE APP</small>
+								<small>ONE-SHOT JOB</small>
 							</div>
 						</div>
 						<div class="host-signals">
@@ -105,8 +105,7 @@ const miseCommand = 'mise use --global github:nicodes/komizo@latest';
 						<div>
 							<h3>Prepare the host</h3>
 							<p>
-								<code>komizo setup --host root@your-server --definition app.json</code> registers an application on a host you administer. Review the provisioning changes
-								before using it on an existing server.
+								Install verified host artifacts on Debian 13 with Podman. Root-owned policy grants each application its artifact, resource, hostname and secret authority.
 							</p>
 						</div>
 					</article>
@@ -115,8 +114,7 @@ const miseCommand = 'mise use --global github:nicodes/komizo@latest';
 						<div>
 							<h3>Deploy one application</h3>
 							<p>
-								Deploy a published immutable artifact over SSH with explicit operator approval. Optional GitHub Actions
-								connect CI provenance to the same protected host executor.
+								Submit an exact immutable release through approved GitHub Actions or owner authority. The host verifies its source, artifacts and resource limits before activation.
 							</p>
 							<a href="https://github.com/nicodes/komizo-actions">Deployment actions ↗</a>
 						</div>
@@ -126,8 +124,8 @@ const miseCommand = 'mise use --global github:nicodes/komizo@latest';
 						<div>
 							<h3>Keep the system in view</h3>
 							<p>
-								Inspect applications with <code>list</code>, read <code>report</code>, and follow <code>logs</code>. Use{' '}
-								<code>ui</code> for the local browser interface.
+								Read <code>status</code>, inspect exact operations, and select service or job <code>logs</code>. Run{' '}
+								<code>komizo ui --host server.example</code> for the local browser interface.
 							</p>
 						</div>
 					</article>
@@ -135,12 +133,12 @@ const miseCommand = 'mise use --global github:nicodes/komizo@latest';
 			</section>
 			<section class="command-rail" aria-label="Command reference">
 				<span>YOUR DAILY TOOLS</span>
-				<code>komizo list</code>
-				<code>komizo report</code>
-				<code>komizo logs</code>
-				<code>komizo ui</code>
+				<code>komizo status --host server.example</code>
+				<code>komizo inspect --host server.example --application mailroom</code>
+				<code>komizo logs --host server.example --application mailroom --service api</code>
+				<code>komizo ui --host server.example</code>
 				<p>
-					Use <code>--help</code> for current flags.
+					Use <code>komizo --help</code> for current flags.
 				</p>
 			</section>
 			<section class="host-start">
